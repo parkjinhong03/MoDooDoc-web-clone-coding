@@ -1,0 +1,31 @@
+.clean-system-description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+
+  .description-pharse {
+    p {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: -0.8px;
+
+      .highlight {
+        color: rgba(83, 7, 176, 1);
+        font-weight: 700;
+      }
+    }
+  }
+
+  .show-modal-btn {
+    padding: 4px 8px;
+    border: 1px solid rgba(233, 233, 233, 1);
+
+    p {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.8px;
+      color: rgba(69, 68, 71, 1);
+    }
+  }
+}

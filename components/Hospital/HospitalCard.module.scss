@@ -1,0 +1,12 @@
+.hospital-card {
+  margin: 20px;
+
+  &-name {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: -0.6px;
+    cursor: pointer;
+    user-select: none;
+  }
+}
