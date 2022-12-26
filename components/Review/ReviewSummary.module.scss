@@ -41,17 +41,8 @@
           }
         }
 
-        &-content {
-          display: flex;
+        .star-rating-container {
           margin-left: 6px;
-
-          .star-img {
-            margin-right: 2px;
-          }
-
-          .star-img:last-child {
-            margin-right: 0;
-          }
         }
       }
 

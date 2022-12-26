@@ -1,6 +1,5 @@
 import React from "react";
 import { dehydrate } from "react-query";
-import HospitalCard from "../components/Hospital/HospitalCard";
 import HospitalList from "../components/Hospital/HospitalList";
 import Header from "../components/Layout/Header";
 import { prefetchHospitals, useFetchHospitals } from "../hooks/http-api/fetch-hospitals.hooks";

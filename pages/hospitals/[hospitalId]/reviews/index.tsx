@@ -5,6 +5,7 @@ import { dehydrate } from "react-query";
 import CleanSystemDescription from "../../../../components/CleanSystem/CleanSystemDescription";
 import Header from "../../../../components/Layout/Header";
 import ReviewFilter from "../../../../components/Review/ReviewFilter";
+import ReviewList from "../../../../components/Review/ReviewList";
 import ReviewSorter from "../../../../components/Review/ReviewSorter";
 import ReviewSummary from "../../../../components/Review/ReviewSummary";
 import Divider from "../../../../components/UI/Divider";
@@ -51,7 +52,7 @@ export default function ReviewListPage() {
   const hospitalsQuery = useFetchHospitals();
   const hospitals = hospitalsQuery.data?.hospitals;
 
-  const reviewsQuery = useFetchReviews(hospitalId, searchQuery);
+  const [reviewsQuery] = useFetchReviews(hospitalId, searchQuery);
   const reviews = reviewsQuery.data?.reviews;
 
   const isLoadedAll = !!(hospitals && reviews);
@@ -68,9 +69,9 @@ export default function ReviewListPage() {
   return (
     <React.Fragment>
       <Header title={matchedHospitalWithURI?.name || ""} showBackwardBtn={true} />
-      {!(isLoadedAll && matchedHospitalWithURI) && <p>loading...</p>}
+      {!(isLoadedAll && !!matchedHospitalWithURI) && <p>loading...</p>}
       {/* isLoadedAll===true, matchedHospitalWithURI===false 경우는 없다고 가정. getServerSideProps에서 404일 경우 redirect 처리 했으니. 그럼 왜 조건문 넣었냐? -> 타입 때문에 */}
-      {isLoadedAll && matchedHospitalWithURI && (
+      {isLoadedAll && !!matchedHospitalWithURI && (
         <React.Fragment>
           <ReviewFilter treatmentPricesCountPerName={treatmentPricesCountPerName!} />
           <ReviewSummary
@@ -86,7 +87,7 @@ export default function ReviewListPage() {
           <CleanSystemDescription />
           <Divider />
           <ReviewSorter />
-          {/* <div><ReviewContent /><ReviewScore /><ReviewIsUseful /></div> */}
+          <ReviewList />
         </React.Fragment>
       )}
     </React.Fragment>

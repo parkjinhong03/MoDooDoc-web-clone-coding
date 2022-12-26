@@ -1,0 +1,97 @@
+.review-author {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+
+  .profile {
+    display: flex;
+
+    .image-container {
+      border: 1px solid rgb(188 188 188);
+      border-radius: 12px;
+      width: 24px;
+      height: 24px;
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-inform-container {
+      margin-left: 6px;
+
+      .name {
+        p {
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: -0.6px;
+          color: rgba(69, 68, 71, 1);
+        }
+      }
+
+      .cnt-and-registered-at {
+        display: flex;
+        align-items: center;
+
+        .cnt {
+          display: flex;
+          align-items: center;
+
+          .review-cnt,
+          .liked-cnt {
+            display: flex;
+            align-items: center;
+
+            p {
+              font-size: 12px;
+              font-weight: 400;
+              letter-spacing: -0.8px;
+              color: rgba(135, 134, 138, 1);
+            }
+          }
+
+          div:not(:first-child) {
+            margin-left: 6px;
+          }
+        }
+
+        .registered-at {
+          p {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(135, 134, 138, 1);
+            letter-spacing: -0.3px;
+          }
+        }
+      }
+    }
+  }
+
+  .is-useful {
+    border: 1px solid rgba(233, 233, 233, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 6px 6px 10px;
+
+    p {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.6px;
+      color: rgba(69, 68, 71, 1);
+    }
+
+    p:not(:last-child),
+    img:not(:last-child) {
+      margin-right: 4px;
+    }
+  }
+
+  .divider {
+    height: 9px;
+    color: rgb(226, 225, 229);
+    border: 1px solid rgb(233, 233, 233);
+    margin: 0 6px;
+  }
+}
