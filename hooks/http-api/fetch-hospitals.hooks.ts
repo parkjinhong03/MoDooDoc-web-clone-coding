@@ -18,7 +18,7 @@ interface FetchHospitalListAPIResponse {
   }[];
 }
 
-async function fetchHospitalList(): Promise<{ hospitals: Hospital[] }> {
+async function fetchHospitalList(): Promise<Hospital[]> {
   const aceessToken = "WOttAMeBZi2yR3XImaEzIOCqrDBD9k";
   const responseData = await fetch("https://recruit.modoodoc.com/hospitals/", {
     headers: {
@@ -44,18 +44,30 @@ async function fetchHospitalList(): Promise<{ hospitals: Hospital[] }> {
     })),
   }));
 
-  return {
-    hospitals: hospitals,
-  };
+  return hospitals;
+}
+
+export interface HospitalsQueryDataType {
+  hospitals: Hospital[];
 }
 
 export async function prefetchHospitals(queryClient: QueryClient) {
   const queryKey = QueryKeyManager[QueryType.Hospitals].createKey();
-  await queryClient.prefetchQuery(queryKey, fetchHospitalList);
+  await queryClient.prefetchQuery(
+    queryKey,
+    async (): Promise<HospitalsQueryDataType> => ({
+      hospitals: await fetchHospitalList(),
+    })
+  );
 }
 
 export function useFetchHospitals() {
   const queryKey = QueryKeyManager[QueryType.Hospitals].createKey();
-  const query = useQuery(queryKey, fetchHospitalList);
+  const query = useQuery(
+    queryKey,
+    async (): Promise<HospitalsQueryDataType> => ({
+      hospitals: await fetchHospitalList(),
+    })
+  );
   return query;
 }
