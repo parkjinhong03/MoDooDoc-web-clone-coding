@@ -6,9 +6,10 @@ class MyDocument extends Document {
       <Html>
         <Head />
         <body>
-          <div id="clean-system-modal-portal" />
           <Main />
           <NextScript />
+          <div id="clean-system-modal-portal" />
+          <div id="review-bottom-ravigator" />
         </body>
       </Html>
     );

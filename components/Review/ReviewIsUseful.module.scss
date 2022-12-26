@@ -1,0 +1,39 @@
+.review-is-useful {
+  .useful-count {
+    p {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.8px;
+      color: rgba(69, 68, 71, 1);
+      text-decoration: underline;
+
+      .highlight {
+        font-weight: 700;
+      }
+    }
+  }
+
+  .useful-btn {
+    display: flex;
+    height: 48px;
+    width: 100%;
+    background-color: rgba(69, 68, 71, 1);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 18px;
+
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.4px;
+      color: white;
+      margin-left: 6px;
+    }
+
+    p:not(:first-child),
+    img:not(:first-child) {
+      margin-left: 6px;
+    }
+  }
+}
