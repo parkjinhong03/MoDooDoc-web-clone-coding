@@ -34,7 +34,7 @@ const ReviewDetail = () => {
   const [prevReviewId, setPrevReviewId] = useState<number | undefined>(undefined);
   const [nextReviewId, setNextReviewId] = useState<number | undefined>(undefined);
 
-  const loadPrevAndNextReview = useCallback(async () => {
+  const loadPrevAndNextReview = useCallback(() => {
     if (!(reviewsQueryData && reviewsQueryData.reviews && reviewsQueryData.loadedPage)) {
       return;
     }
@@ -42,19 +42,17 @@ const ReviewDetail = () => {
     const matchReviewIndex = reviewsQueryData.reviews.findIndex((review) => review.id === reviewId);
     if (matchReviewIndex !== -1) {
       if (reviewsQueryData.reviews[matchReviewIndex + 1] === undefined && !reviewsQueryData.isFetchedAllPage) {
-        await fetchMorePage(reviewsQueryData.loadedPage + 1);
+        fetchMorePage(reviewsQueryData.loadedPage + 1);
+      } else {
+        setPrevReviewId(reviewsQueryData.reviews[matchReviewIndex - 1]?.id);
+        setNextReviewId(reviewsQueryData.reviews[matchReviewIndex + 1]?.id);
       }
-
-      setPrevReviewId(reviewsQueryData.reviews[matchReviewIndex - 1]?.id);
-      setNextReviewId(reviewsQueryData.reviews[matchReviewIndex + 1]?.id);
     } else {
-      await fetchMorePage(reviewsQueryData.loadedPage + 1);
+      fetchMorePage(reviewsQueryData.loadedPage + 1);
     }
   }, [reviewsQueryData, fetchMorePage, reviewId]);
 
-  useEffect(() => {
-    loadPrevAndNextReview();
-  }, [loadPrevAndNextReview]);
+  useEffect(loadPrevAndNextReview, [loadPrevAndNextReview]);
 
   const isUsefulBtnClickHandler = () => {
     updateReviewInAllReviewsQueries((review) => {
