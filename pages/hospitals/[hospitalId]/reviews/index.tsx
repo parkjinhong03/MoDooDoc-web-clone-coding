@@ -49,7 +49,8 @@ export default function ReviewListPage() {
   const searchQuery = router.query.q as string | undefined;
   const hospitalId = parseInt(router.query.hospitalId as string);
 
-  const hospitals = useFetchHospitals();
+  const hospitalsQuery = useFetchHospitals();
+  const hospitals = hospitalsQuery.data?.hospitals;
 
   const [reviewsQuery] = useFetchReviews(hospitalId, searchQuery);
   const reviews = reviewsQuery.data?.reviews;

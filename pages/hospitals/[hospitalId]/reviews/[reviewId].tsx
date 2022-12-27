@@ -24,7 +24,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (err instanceof NotFoundError) {
       return {
         redirect: {
-          destination: ``,
+          destination: "/",
           permanent: true,
         },
       };
@@ -43,19 +43,23 @@ const ReviewDetailPage = () => {
   const hospitalId = parseInt(router.query.hospitalId as string);
   const reviewId = parseInt(router.query.reviewId as string);
 
-  const hospitals = useFetchHospitals();
+  const hospitalsQuery = useFetchHospitals();
+  const hospitals = hospitalsQuery.data?.hospitals;
 
   const [reviewQuery] = useFetchReview(hospitalId, reviewId);
   const review = reviewQuery.data?.review;
 
   const isLoadedAll = !!(hospitals && review);
-  const matchedHospitalWithURI = hospitals?.find((hospital) => hospital.id === hospitalId);
+  if (!isLoadedAll) {
+    return <p>loading...</p>;
+  }
+
+  const matchedHospitalWithURI = hospitals.find((hospital) => hospital.id === hospitalId)!;
 
   return (
     <React.Fragment>
-      <Header title={matchedHospitalWithURI?.name || ""} showBackwardBtn={true} />
-      {!(isLoadedAll && matchedHospitalWithURI) && <p>loading...</p>}
-      {isLoadedAll && matchedHospitalWithURI && <ReviewDetail />}
+      <Header title={matchedHospitalWithURI.name || ""} showBackwardBtn={true} />
+      <ReviewDetail />
     </React.Fragment>
   );
 };
