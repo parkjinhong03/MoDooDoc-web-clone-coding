@@ -74,13 +74,13 @@ export default function ReviewListPage() {
         <React.Fragment>
           <ReviewFilter treatmentPricesCountPerName={treatmentPricesCountPerName!} />
           <ReviewSummary
-            totalScore={matchedHospitalWithURI["totalScore"]}
-            scoreServiceClarity={matchedHospitalWithURI["scoreServiceClarity"]}
-            scoreServiceKindness={matchedHospitalWithURI["scoreServiceKindness"]}
-            scoreTreatmentExplain={matchedHospitalWithURI["scoreTreatmentExplain"]}
-            scoreTreatmentOutcome={matchedHospitalWithURI["scoreTreatmentOutcome"]}
-            suggestCount={matchedHospitalWithURI["suggestCount"]}
-            nonSuggestCount={matchedHospitalWithURI["nonSuggestCount"]}
+            totalScore={matchedHospitalWithURI.totalScore}
+            scoreServiceClarity={matchedHospitalWithURI.scoreServiceClarity}
+            scoreServiceKindness={matchedHospitalWithURI.scoreServiceKindness}
+            scoreTreatmentExplain={matchedHospitalWithURI.scoreTreatmentExplain}
+            scoreTreatmentOutcome={matchedHospitalWithURI.scoreTreatmentOutcome}
+            suggestCount={matchedHospitalWithURI.suggestCount}
+            nonSuggestCount={matchedHospitalWithURI.nonSuggestCount}
           />
           <Divider />
           <CleanSystemDescription />
