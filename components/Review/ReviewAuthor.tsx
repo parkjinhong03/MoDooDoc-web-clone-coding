@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Review from "../../models/review.model";
+import { formatToString } from "../../utils/date_format";
 import classes from "./ReviewAuthor.module.scss";
 
 const ReviewAuthor: React.FC<{
@@ -16,10 +17,7 @@ const ReviewAuthor: React.FC<{
   // const [alreadyLiked, setAlreadyLiked] = useState(props.alreadyLiked);
 
   const parsedRegisteredAt = new Date(props.registeredAt);
-  const formattedRegisteredAt = `${parsedRegisteredAt.getFullYear()}.${parsedRegisteredAt
-    .getMonth()
-    .toString()
-    .padStart(2, "0")}.${parsedRegisteredAt.getDay().toString().padStart(2, "0")}`;
+  const formattedRegisteredAt = formatToString(parsedRegisteredAt);
 
   const isUsefulBtnClickHandler = () => {
     // setAlreadyLiked(!alreadyLiked);
@@ -32,7 +30,7 @@ const ReviewAuthor: React.FC<{
     <div className={classes["review-author"]}>
       <div className={classes["profile"]}>
         <div className={classes["image-container"]}>
-          <Image src={props.customer.profileImage} alt="profile-image" width={16} height={16} unoptimized={true} />
+          <Image src={props.customer.profileImage} alt="profile-image" width={16} height={16} unoptimized />
         </div>
         <div className={classes["user-inform-container"]}>
           <div className={classes["name"]}>

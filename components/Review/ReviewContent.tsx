@@ -80,26 +80,13 @@ const ReviewContent: React.FC<{
       </div>
 
       <div className={classes["text"]}>
-        {isViewMore && (
-          <p>
-            {contents}
-            <span className={classes["view-more"]} onClick={() => setIsViewMore(false)}>
-              {" "}
-              접기
-            </span>
-          </p>
-        )}
-        {!isViewMore && (
-          <p>
-            {contents}
-            {contents.length > 200 && (
-              <span className={classes["view-more"]} onClick={() => setIsViewMore(true)}>
-                {" "}
-                ... 더보기
-              </span>
-            )}
-          </p>
-        )}
+        <p>
+          {isViewMore ? contents : contents.slice(0, 200)}
+          <span className={classes["view-more"]} onClick={() => setIsViewMore(!isViewMore)}>
+            {" "}
+            {isViewMore ? "접기" : contents.length > 200 && "... 더보기"}
+          </span>
+        </p>
       </div>
 
       <div className={classes["price"]}>

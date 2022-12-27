@@ -20,7 +20,7 @@ export async function getServerSideProps() {
 export default function HospitalListPage() {
   const { data, isLoading, isFetching, isError } = useFetchHospitals();
 
-  if (isLoading || isError) {
+  if (isLoading || isError || !data?.hospitals) {
     return <div>loading....</div>;
   }
 
@@ -44,11 +44,10 @@ export default function HospitalListPage() {
   //  -> 참고로 isFetching으로 들어올 리는 없음. prefetchQuery는 useQuery와 다르게, 캐시가 있어도 그 캐시가 stale 상태라면 fetch를 foreground에서 돌리고 한 번에 반환하기 때문에.
   //     (하지만 그렇게 반환했어도 cacheTime에 걸려서 isLoading으로 될 수도 있음)
 
-  const hospitals = data!.hospitals;
   return (
     <React.Fragment>
       <Header title={"모두닥"} showBackwardBtn={false} />
-      <HospitalList hospitals={hospitals} />
+      <HospitalList hospitals={data.hospitals} />
     </React.Fragment>
   );
 }
