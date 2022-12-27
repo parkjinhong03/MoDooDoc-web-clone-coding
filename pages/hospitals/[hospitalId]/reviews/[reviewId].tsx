@@ -43,8 +43,7 @@ const ReviewDetailPage = () => {
   const hospitalId = parseInt(router.query.hospitalId as string);
   const reviewId = parseInt(router.query.reviewId as string);
 
-  const hospitalsQuery = useFetchHospitals();
-  const hospitals = hospitalsQuery.data?.hospitals;
+  const hospitals = useFetchHospitals();
 
   const [reviewQuery] = useFetchReview(hospitalId, reviewId);
   const review = reviewQuery.data?.review;
