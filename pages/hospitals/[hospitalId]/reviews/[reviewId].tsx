@@ -13,13 +13,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const hospitalId = parseInt(context.query.hospitalId as string);
   const reviewId = parseInt(context.query.reviewId as string);
 
-  const prefetchHospitalsPromise = prefetchHospitals(serverSideQueryClient);
-  const prefetchReviewPromise = prefetchReview(serverSideQueryClient, hospitalId, reviewId);
-
-  await prefetchHospitalsPromise;
-
   try {
-    await prefetchReviewPromise;
+    await Promise.all([
+      prefetchHospitals(serverSideQueryClient),
+      prefetchReview(serverSideQueryClient, hospitalId, reviewId),
+    ]);
   } catch (err) {
     if (err instanceof NotFoundError) {
       return {
