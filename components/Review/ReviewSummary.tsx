@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import Hospital from "../../models/hospital.model";
+import StarRating from "../UI/StarRating";
 import classes from "./ReviewSummary.module.scss";
 
 const ReviewSummary: React.FC<{
@@ -63,25 +64,14 @@ const ReviewItemAverage: React.FC<{
   itemName: string;
   average: number;
 }> = (props) => {
-  const roundedAverage = Math.round(props.average);
-  const starImgSrcs = Array(Math.floor(roundedAverage / 2))
-    .fill(2)
-    .concat(roundedAverage % 2 === 0 ? [] : [roundedAverage % 2])
-    .concat(Array(5 - Math.ceil(roundedAverage / 2)).fill(0))
-    .map((e: number) => {
-      return { 0: "/img/star_empty.svg", 1: "/img/star_half.svg", 2: "/img/star_full.svg" }[e] || "/img/star_empty.svg";
-    });
-
   return (
     <div className={classes["item"]}>
       <div className={classes["item-header"]}>
         <p>{props.itemName}</p>
       </div>
       <div className={classes["divider"]} />
-      <div className={classes["item-content"]}>
-        {starImgSrcs.map((starImgSrc, index) => (
-          <Image key={index} src={starImgSrc} className={classes["star-img"]} alt="star" width={13} height={13} />
-        ))}
+      <div className={classes["star-rating-container"]}>
+        <StarRating score={props.average} />
       </div>
     </div>
   );

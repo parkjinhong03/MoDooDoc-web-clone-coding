@@ -1,0 +1,144 @@
+.review-content {
+  padding-bottom: 16px;
+
+  .link-to-detail-page {
+    padding: 11px 0;
+
+    .receipt-ok {
+      background-color: rgba(83, 7, 176, 1);
+      display: flex;
+      width: 78px;
+      border-radius: 11px;
+      align-items: center;
+      justify-content: center;
+      height: 20px;
+
+      p {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: -0.8px;
+        color: rgba(255, 255, 255, 1);
+        margin-left: 3px;
+      }
+    }
+
+    .header {
+      margin-top: 16px;
+
+      .treatment {
+        p {
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: -0.6px;
+        }
+      }
+
+      .score-and-suggest-and-visited-at {
+        display: flex;
+        align-items: center;
+        margin-top: 3px;
+
+        .score-container {
+          display: flex;
+          align-items: center;
+
+          .score {
+            margin-left: 3px;
+
+            p {
+              font-size: 14px;
+              font-weight: 700;
+              letter-spacing: -0.6px;
+              color: rgba(69, 68, 71, 1);
+            }
+          }
+        }
+
+        @mixin suggestPharse {
+          font-size: 13px;
+          font-weight: 400;
+          letter-spacing: -0.6px;
+        }
+
+        .suggest {
+          p {
+            @include suggestPharse;
+            color: rgba(126, 79, 219, 1);
+          }
+        }
+
+        .non-suggest {
+          p {
+            @include suggestPharse;
+            color: rgba(135, 134, 138, 1);
+          }
+        }
+
+        .visited-at {
+          p {
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: -0.6px;
+            color: rgba(135, 134, 138, 1);
+          }
+        }
+      }
+
+      .doctor-name {
+        margin-top: 4px;
+
+        p {
+          font-size: 13px;
+          font-weight: 400;
+          letter-spacing: -0.6px;
+          color: rgba(135, 134, 138, 1);
+        }
+      }
+    }
+  }
+
+  .text {
+    margin-top: 5px;
+
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: -0.6px;
+      color: rgba(69, 68, 71, 1);
+
+      .view-more {
+        font-weight: 700;
+      }
+
+      .highlight {
+        background-color: #fff3a6;
+        padding: 0px 1px;
+      }
+    }
+  }
+
+  .price {
+    display: flex;
+    padding: 0 14px;
+    height: 38px;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8f8f8;
+    border-radius: 4px;
+    margin-top: 24px;
+
+    p {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: -0.6px;
+      color: rgba(69, 68, 71, 1);
+    }
+  }
+
+  .divider {
+    height: 9px;
+    color: rgb(226, 225, 229);
+    border: 1px solid rgb(233, 233, 233);
+    margin: 0 6px;
+  }
+}

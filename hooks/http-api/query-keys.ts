@@ -3,11 +3,12 @@ import { QueryClient } from "react-query";
 export enum QueryType {
   Hospitals,
   Reviews,
+  Review,
 }
 
 export const QueryKeyManager = {
   [QueryType.Hospitals]: {
-    keyPrefix: "hospitals",
+    keyPrefix: "hospitals", // 이 값을 따로 저장해둔 이유는 아래 setDefaultQueryOptions 함수에서 재사용하려고
     defaultOption: {
       serverSide: {
         // serverSideQueryClient의 staleTime는 첫 접속(or 리프레쉬)시 받을 데이터의 최신화를 위하여. clientSideQueryClient의 staleTime는 한 번 들어온 이후부터의 데이터 최신화를 위하여
@@ -52,13 +53,33 @@ export const QueryKeyManager = {
         searchQuery: searchQuery || "",
       },
     ],
+    createRootKey: (hospitalId: number) => [QueryKeyManager[QueryType.Reviews].keyPrefix, hospitalId],
+  },
+
+  [QueryType.Review]: {
+    keyPrefix: "review",
+    defaultOption: {
+      serverSide: {
+        staleTime: 60 * 60 * 1000,
+        cacheTime: 60 * 60 * 1000,
+      },
+      clientSide: {
+        staleTime: 60 * 60 * 1000,
+        cacheTime: 65 * 60 * 1000,
+      },
+    },
+    createKey: (hospitalId: number, reviewId: number) => [
+      QueryKeyManager[QueryType.Review].keyPrefix,
+      hospitalId,
+      reviewId,
+    ],
   },
 };
 
 export function setDefaultQueryOptions_Serv(queryClient: QueryClient) {
   Object.values(QueryKeyManager).forEach(({ keyPrefix, defaultOption }) => {
     // query option을 prefetchQuery나 useQuery에서 설정해주지 않는 이유는 https://github.com/TanStack/query/discussions/3220 때문에.
-    // 첫 번째 요소에 keyPrefix가 설정되어있는 모든 key의 Query들은 아래 option을 그대로 가져감.
+    // 첫 번째 요소에 keyPrefix가 설정되어있는 모든 key의 Query들은 아래 option을 그대로 가져감. 그래서 keyPrefix 속성을 따로 뺀거임.
     queryClient.setQueryDefaults([keyPrefix], defaultOption.serverSide);
   });
 }

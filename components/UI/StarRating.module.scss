@@ -1,0 +1,11 @@
+.star-rating {
+  display: flex;
+
+  img {
+    margin-right: 2px;
+  }
+
+  img:last-child {
+    margin-right: 0;
+  }
+}

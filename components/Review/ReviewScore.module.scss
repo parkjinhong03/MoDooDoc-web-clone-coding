@@ -1,0 +1,31 @@
+.review-score {
+  padding: 10px 16px;
+  border: 1px solid rgba(233, 233, 233, 1);
+  border-radius: 4px;
+
+  .item-name-and-score-with-star-row {
+    display: flex;
+    justify-content: space-between;
+
+    .item-name-and-score-with-star {
+      display: flex;
+      align-items: center;
+
+      .item-name {
+        max-width: 60px;
+        min-width: 60px;
+
+        p {
+          font-size: 12px;
+          font-weight: 400;
+          letter-spacing: -0.8px;
+          color: rgba(69, 68, 71, 1);
+        }
+      }
+    }
+  }
+
+  .item-name-and-score-with-star-row:not(:first-child) {
+    margin-top: 8px;
+  }
+}

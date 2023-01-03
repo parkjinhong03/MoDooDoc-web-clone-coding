@@ -1,0 +1,32 @@
+.review-bottom-navigator {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 9px 15px;
+  border-top: 1px solid rgba(226, 225, 229, 1);
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+
+  .link-to-review-btn {
+    height: 40px;
+    width: 49%;
+    border: 1px solid rgba(135, 134, 138, 1);
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.4px;
+      color: rgba(69, 68, 71, 1);
+    }
+  }
+
+  .fake-box {
+    width: 49%;
+  }
+}
