@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { setDefaultQueryOptions_Cli, setDefaultQueryOptions_Serv } from "../hooks/http-api/query-keys";
 
@@ -16,14 +16,14 @@ export const serverSideQueryClient = (() => {
 export default function App({ Component, pageProps }: AppProps) {
   // react-query 캐시들을 클라이언트 측에 저장해두기 위한 객체. 각각의 유저의 클라이언트에 따로따로 저장되며 클라이언트에서 돌아가는 코드에서 사용한다.
   // 참고로 useState를 이용한 이유는 page 이동시 app 자체가 다시 재렌더링되는 구조이기 때문에 useState를 사용하지 않고 선언하면 페이지 이동할 때 마다 캐시가 날라감.
-  const [clientSideQueryClient] = useState(() => {
-    const queryClient = new QueryClient();
-    setDefaultQueryOptions_Cli(queryClient);
-    return queryClient;
-  });
+  const clientSideQueryClient = useRef<QueryClient>();
+  if (!clientSideQueryClient.current) {
+    clientSideQueryClient.current = new QueryClient();
+    setDefaultQueryOptions_Cli(clientSideQueryClient.current);
+  }
 
   return (
-    <QueryClientProvider client={clientSideQueryClient}>
+    <QueryClientProvider client={clientSideQueryClient.current}>
       <Hydrate state={pageProps.dehydratedState}>
         <Component {...pageProps} />
       </Hydrate>

@@ -101,7 +101,7 @@ const ReviewDetail = () => {
       {(prevReviewId || nextReviewId) &&
         ReactDOM.createPortal(
           <ReviewBottomNavigator hospitalId={hospitalId} prevReviewId={prevReviewId} nextReviewId={nextReviewId} />,
-          document.getElementById("review-bottom-ravigator")!
+          document.getElementById("review-bottom-navigator")!
         )}
 
       {/* {isOpenCleanSystemModal &&

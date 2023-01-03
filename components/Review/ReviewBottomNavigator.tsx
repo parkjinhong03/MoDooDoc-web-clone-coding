@@ -16,14 +16,14 @@ const ReviewBottomNavigator: React.FC<{
 
   return (
     <div className={classes["review-bottom-navigator"]}>
-      {!!props.prevReviewId ? (
+      {props.prevReviewId ? (
         <div className={classes["link-to-review-btn"]} onClick={() => viewReviewBtnClickHandler(props.prevReviewId!)}>
           <p>이전 리뷰</p>
         </div>
       ) : (
         <div className={classes["fake-box"]} />
       )}
-      {!!props.nextReviewId ? (
+      {props.nextReviewId ? (
         <div className={classes["link-to-review-btn"]} onClick={() => viewReviewBtnClickHandler(props.nextReviewId!)}>
           <p>다음 리뷰</p>
         </div>

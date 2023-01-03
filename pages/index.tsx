@@ -19,7 +19,10 @@ export async function getServerSideProps() {
 
 export default function HospitalListPage() {
   const { data, isLoading, isFetching, isError } = useFetchHospitals();
-  const hospitals = data?.hospitals;
+
+  if (isLoading || isError || !data?.hospitals) {
+    return <div>loading....</div>;
+  }
 
   // isLoading과 isFetching의 차이는, 캐시가 있냐 없냐 차이.
   //   - isFetching은 이전에 캐싱된게 있는채로 refetch가 걸렸을 때. 그래서 캐싱된 값을 먼저 반환한 후, 백그라운드에서 fetch 실행 후 다시 반환 (총 2번 리렌더링)
@@ -44,8 +47,7 @@ export default function HospitalListPage() {
   return (
     <React.Fragment>
       <Header title={"모두닥"} showBackwardBtn={false} />
-      {!hospitals && <p>loading...</p>}
-      {hospitals && <HospitalList hospitals={hospitals} />}
+      <HospitalList hospitals={data.hospitals} />
     </React.Fragment>
   );
 }
